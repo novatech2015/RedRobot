@@ -13,7 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * UNTESTED
+ * Serial NFC Utility.
  * @author Mr. Mallory
  */
 public class PN532 {

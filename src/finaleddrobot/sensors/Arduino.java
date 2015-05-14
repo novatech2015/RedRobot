@@ -36,7 +36,7 @@ public class Arduino {
             throw new Exception("SERIAL LINE BUSY!!!! Shut down data phase!");
         }
         stateIncrement = state;
-        m_arduino.write("$STATE " + state + ",");
+        m_arduino.write("$STATE " + state + " ,");
         stateIncrement++;
         while(m_arduino.read().length == 0){
             Thread.sleep(10);
@@ -66,22 +66,39 @@ public class Arduino {
         return false;
     }
     
-    public String getIncoming() throws IOException{
+    public String getIncoming() throws IOException, Exception{
         if(dataPhase){
-            
+            char[] cbuf = new char[512];
+            recentData = new String(m_arduino.read());
         }else{
-            
+            throw new Exception("DATA PHASE IS OFF!!!! Turn on data phase!");
         }
-        return new String(m_arduino.read());
+        return recentData;
     }
     
-    public double getData(String searchTerm){
-        String regex = "[^$" + searchTerm + " ]";
-        
+    public double getData(String searchTerm) throws Exception{
+        String testString = this.getIncoming();
+        String regex = "[^$" + searchTerm + " ]+ ";
         Pattern pattern = Pattern.compile(regex);
-        
         Matcher matcher = pattern.matcher(testString);
-        return 4.0;
+        
+        String resultString = "";
+        int index = 0;
+        while(matcher.find()){
+            index++;
+        }
+        matcher.reset();
+        for(int i = 0; i < index; i++){
+            matcher.find();
+        }
+        resultString = matcher.group();
+        
+        if(resultString.equals("")){
+            throw new Exception("No Match!!!");
+        }
+        
+        double result = Double.parseDouble(resultString);
+        return result;
     }
     
 }

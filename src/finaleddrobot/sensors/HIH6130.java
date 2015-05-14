@@ -27,7 +27,7 @@ public class HIH6130 {
             System.out.println("Bus Connected");
             
             m_humiditySensor = bus.getDevice(0x27);//Gets device on the bus 
-            System.out.println("HIH6130 Connected");
+            System.out.println("HTU21D Connected");
 	} catch (IOException e) {
             System.out.println(e);
 	}
