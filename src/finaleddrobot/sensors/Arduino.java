@@ -56,6 +56,13 @@ public class Arduino {
         }
     }
     
+    public int slaveSyncState() throws Exception{
+        this.startDataMode();
+        stateIncrement = (int) this.getData("STATE");
+        this.stopDataMode();
+        return stateIncrement;
+    }
+    
     public boolean startDataMode() throws IOException{
         dataPhase = true;
         m_arduino.write("" + -2);
@@ -69,6 +76,7 @@ public class Arduino {
     }
     
     public String getIncoming() throws IOException, Exception{
+        Thread.sleep(180);
         if(dataPhase){
             char[] cbuf = new char[512];
             recentData = new String(m_arduino.read());
@@ -93,7 +101,8 @@ public class Arduino {
         String resultString = "";
         
         //Finds Matches of name qualifier
-        int[] indices = new int[2];
+        int[] indices = {-9001,-9001};
+        
         for(int i = 0; i < line.length; i++){
             matcher = pattern.matcher(line[i]);
             if(matcher.find()){

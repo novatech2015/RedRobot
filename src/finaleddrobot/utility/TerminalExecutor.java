@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
- *
+ * TODO : Make Runtime a member variable to save on execution time.
  * @author mallory
  */
 public class TerminalExecutor {

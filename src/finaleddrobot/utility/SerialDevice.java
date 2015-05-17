@@ -14,7 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- *
+ * TODO : Clear Unused Objects to save memory
  * @author mallory
  */
 public class SerialDevice {
@@ -28,7 +28,7 @@ public class SerialDevice {
         File file = new File(m_address);
         fr = new FileReader(file);
         fw = new FileWriter(file);
-        exec.executeCommand("stty raw -echo < /dev/ttyUSB0");
+        exec.executeCommand("stty raw -echo < " + m_address);
     }
     
     public SerialDevice(String address) throws FileNotFoundException, IOException{
