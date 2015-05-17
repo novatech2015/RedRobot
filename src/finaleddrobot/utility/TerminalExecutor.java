@@ -19,7 +19,7 @@ public class TerminalExecutor {
         Process p;
         
         try {
-            p = Runtime.getRuntime().exec(command);
+            p = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c",command});
             p.waitFor();
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             

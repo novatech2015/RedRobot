@@ -1,9 +1,11 @@
+package finaleddrobot.utility;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finaleddrobot.utility;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,6 +20,7 @@ import java.io.IOException;
 public class SerialDevice {
     
     private String m_address = "/dev/ttyUSB0";
+    private TerminalExecutor exec = new TerminalExecutor();
     private FileReader fr;
     private FileWriter fw;
     
@@ -25,6 +28,7 @@ public class SerialDevice {
         File file = new File(m_address);
         fr = new FileReader(file);
         fw = new FileWriter(file);
+        exec.executeCommand("stty raw -echo < /dev/ttyUSB0");
     }
     
     public SerialDevice(String address) throws FileNotFoundException, IOException{
@@ -35,7 +39,7 @@ public class SerialDevice {
     }
     
     public void write(String string) throws IOException{
-        fw.write(string);
+        exec.executeCommand("echo " + string + "> " + m_address);
     }
     
     public char[] read() throws IOException{

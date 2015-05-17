@@ -1,9 +1,11 @@
+package finaleddrobot.sensors;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finaleddrobot.sensors;
+
 
 import finaleddrobot.utility.SerialDevice;
 import java.io.IOException;
@@ -56,7 +58,7 @@ public class Arduino {
     
     public boolean startDataMode() throws IOException{
         dataPhase = true;
-        m_arduino.write("-2");
+        m_arduino.write("" + -2);
         return true;
     }
     
@@ -78,25 +80,52 @@ public class Arduino {
     
     public double getData(String searchTerm) throws Exception{
         String testString = this.getIncoming();
-        String regex = "[^$" + searchTerm + " ]+ ";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(testString);
+        //Split by New Line
+        String[] line = testString.split("\n");
+        //Inner part of regex which is to be reused
+        String regexWord = "$" + searchTerm + " ,";
+        //First Regex used to find name qualifiers
+        String regex = "[" + regexWord + " ,]+";
         
+        //Object construction
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher;
         String resultString = "";
-        int index = 0;
-        while(matcher.find()){
-            index++;
+        
+        //Finds Matches of name qualifier
+        int[] indices = new int[2];
+        for(int i = 0; i < line.length; i++){
+            matcher = pattern.matcher(line[i]);
+            if(matcher.find()){
+                if(matcher.group().equals(regexWord)){
+                    indices[0] = indices[1];
+                    indices[1] = i;
+                }
+            }
         }
-        matcher.reset();
-        for(int i = 0; i < index; i++){
+        
+        
+        //Finds corresponding numbers if available
+        pattern = Pattern.compile("[\\d\\.]+");
+        matcher = pattern.matcher(line[indices[1]]);
+        if(matcher.find()){
+        }else{
+            matcher = pattern.matcher(line[indices[0]]);
             matcher.find();
         }
-        resultString = matcher.group();
+        try{
+            resultString = matcher.group();
+            System.out.println("MATCH");
+        }catch(Exception e){
+            System.out.println("NO MATCH");
+        }
         
+        //Alert if no match
         if(resultString.equals("")){
             throw new Exception("No Match!!!");
         }
         
+        //Return resulting number as double
         double result = Double.parseDouble(resultString);
         return result;
     }
