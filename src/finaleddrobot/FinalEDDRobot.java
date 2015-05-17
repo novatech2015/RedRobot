@@ -1,75 +1,50 @@
 package finaleddrobot;
 
-import finaleddrobot.sensors.PN532;
-import finaleddrobot.utility.MiFareStringBuilder;
-import java.io.IOException;
+import finaleddrobot.phases.*;
 
 public class FinalEDDRobot{
-	
-	private static byte autophase = 0;	
 
-        
-        
-	public static void main(String[] args){
-            try{
-                PN532 pn532 = new PN532();
-                MiFareStringBuilder mfstringBuilder = new MiFareStringBuilder();
-                pn532.write(mfstringBuilder.getMifareString());
-            }catch(Exception e){
-                System.out.println(e);
-            }
-            
-            
-            //while(true){
-                    if(autophase == 0){
-                            phase0(); 
-                    }else if(autophase == 1){
-                            phase1(); 
-                    }else if(autophase == 2){
-                            phase2();
-                    }else if(autophase == 3){
-                            phase3();
-                    }else if(autophase == 4){
-                            phase4();
-                    }else if(autophase == 5){
-                            phase5();
-                    }else if(autophase == 6){
-                            phase6();
+    private static byte autophase = 0;	
+
+    public static void main(String[] args){
+
+        while(true){
+            if(autophase == 0){
+                    Phase0.update();
+                    if(Phase0.hitFlag()){
+                        autophase++;
                     }
-            //}
-	}
-
-	public static void phase0(){
-
-	}
-
-	public static void phase1(){
-
-	}
-
-	public static void phase2(){
-
-	}
-
-	public static void phase3(){
-
-	}
-
-	public static void phase4(){
-
-	}
-
-	public static void phase5(){
-
-	}
-
-	public static void phase6(){
-
-	}
-        
-        public static boolean syncPhase(){
-            return false;
+            }else if(autophase == 1){
+                    Phase1.update();
+                    if(Phase1.hitFlag()){
+                        autophase++;
+                    }
+            }else if(autophase == 2){
+                    Phase2.update();
+                    if(Phase2.hitFlag()){
+                        autophase++;
+                    }
+            }else if(autophase == 3){
+                    Phase3.update();
+                    if(Phase3.hitFlag()){
+                        autophase++;
+                    }
+            }else if(autophase == 4){
+                    Phase4.update();
+                    if(Phase4.hitFlag()){
+                        autophase++;
+                    }
+            }else if(autophase == 5){
+                    Phase5.update();
+                    if(Phase5.hitFlag()){
+                        autophase++;
+                    }
+            }else if(autophase == 6){
+                    Phase6.update();
+                    if(Phase6.hitFlag()){
+                        autophase++;
+                    }
+            }
         }
-
-
+    }
 }
