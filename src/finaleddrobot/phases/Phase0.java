@@ -12,13 +12,13 @@ package finaleddrobot.phases;
 public class Phase0 {
 
     private static boolean isInitialized = false;
-    
+    private static boolean hasRun = false;
     private static void setup() {
         
     }
     
     private static void loop(){
-        
+        hasRun = true;
     }
 
     public static void update() {
@@ -31,7 +31,7 @@ public class Phase0 {
     }
 
     public static boolean hitFlag() {
-        return false;
+        return hasRun;
     }
     
     

@@ -5,6 +5,8 @@
  */
 package finaleddrobot.phases;
 
+import finaleddrobot.FinalEDDRobot;
+
 /**
  * Emergency Shutdown Phase
  * @author mallory
@@ -12,13 +14,16 @@ package finaleddrobot.phases;
 public class Phase5 {
 
     private static boolean isInitialized = false;
+    private static boolean hasRun = false;
     
     private static void setup() {
         
     }
     
     private static void loop(){
-        
+        System.exit(0);
+        FinalEDDRobot.autophase++;
+        hasRun = true;
     }
 
     public static void update() {
@@ -31,7 +36,7 @@ public class Phase5 {
     }
 
     public static boolean hitFlag() {
-        return false;
+        return hasRun;
     }
     
     
