@@ -14,4 +14,5 @@ public class RobotConstants {
     public static final double drillAngle = 30;
     public static final long drillSleepTime = 250;
     public static final long sensorSleepTime = 100;
+    public static final String twitchKey = "";
 }
