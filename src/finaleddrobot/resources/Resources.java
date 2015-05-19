@@ -5,6 +5,7 @@
  */
 package finaleddrobot.resources;
 
+import finaleddrobot.packages.Drill;
 import finaleddrobot.sensors.Arduino;
 import finaleddrobot.sensors.BMP180;
 import finaleddrobot.sensors.HIH6130;
@@ -24,6 +25,7 @@ public class Resources {
     public static TMP102 m_tmp102;
     public static HIH6130 m_hih6130;
     public static BMP180 m_bmp180;
+    public static Drill m_drill;
     public static Arduino m_arduino;
     public static PN532 m_pn532;
     public static MiFareStringBuilder m_mifareStringBuilder;
@@ -33,6 +35,7 @@ public class Resources {
         m_tmp102 = new TMP102();
         m_hih6130 = new HIH6130();
         m_bmp180 = new BMP180();
+        m_drill = new Drill(9001, 9001, 9001, 9001, 9001, 9001);
         m_arduino = new Arduino("/dev/ttyUSB0");
         m_pn532 = new PN532();
         m_mifareStringBuilder = new MiFareStringBuilder();

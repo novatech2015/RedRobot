@@ -5,6 +5,8 @@
  */
 package finaleddrobot.phases;
 
+import finaleddrobot.resources.Resources;
+
 /**
  * Sample Location Phase
  * @author mallory
@@ -12,13 +14,19 @@ package finaleddrobot.phases;
 public class Phase3 {
 
     private static boolean isInitialized = false;
+    private static int localState = -9001;
     
     private static void setup() {
         
     }
     
     private static void loop(){
-        
+        System.out.println("In Phase 3");
+        try {
+            localState = Resources.m_arduino.slaveSyncState();
+        } catch (Exception ex) {
+            localState = -9001;
+        }
     }
 
     public static void update() {
@@ -31,7 +39,7 @@ public class Phase3 {
     }
 
     public static boolean hitFlag() {
-        return false;
+        return (localState == 4);
     }
     
     

@@ -10,7 +10,7 @@ public class FinalEDDRobot{
 
     public static byte autophase = 0;	
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         try {
             Resources.init();
@@ -25,6 +25,7 @@ public class FinalEDDRobot{
                 Phase0.update();
                 if(Phase0.hitFlag()){
                     autophase++;
+                    syncState(autophase);
                 }
             //Autonomous Initialization Phase
             }else if(autophase == 1){
@@ -70,5 +71,15 @@ public class FinalEDDRobot{
                 }
             }
         }
+    }
+    
+    private static void syncState(byte autophase) throws IOException{
+        Resources.m_arduino.stopDataMode();
+        try {
+            Resources.m_arduino.syncState(autophase);
+        } catch (Exception ex) {
+            Logger.getLogger(FinalEDDRobot.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

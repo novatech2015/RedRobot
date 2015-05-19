@@ -18,7 +18,9 @@ public class Phase0 {
     }
     
     private static void loop(){
+        System.out.println("In Phase 0");
         hasRun = true;
+        
     }
 
     public static void update() {

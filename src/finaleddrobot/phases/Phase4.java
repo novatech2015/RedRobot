@@ -26,6 +26,8 @@ public class Phase4 {
     }
     
     private static void loop(){
+        System.out.println("In Phase 4");
+        
         try {
             String data = MasterRobot.grabMaxData();
             Resources.m_mifareStringBuilder.appendString(data);

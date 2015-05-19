@@ -6,6 +6,7 @@
 package finaleddrobot;
 
 import finaleddrobot.resources.Resources;
+import finaleddrobot.resources.RobotConstants;
 import finaleddrobot.utility.StringFormatter;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -79,7 +80,11 @@ public class MasterRobot {
 
             //Send stop data signal to arduino
             Resources.m_arduino.stopDataMode();
-
+            try {
+                Thread.sleep(RobotConstants.sensorSleepTime);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(MasterRobot.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             try {
                 //Format String
