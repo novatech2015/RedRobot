@@ -32,7 +32,6 @@ public class Phase4 {
             String data = MasterRobot.grabMaxData();
             Resources.m_mifareStringBuilder.appendString(data);
             Resources.m_pn532.write(Resources.m_mifareStringBuilder.getMifareString());
-            Resources.m_arduino.syncState(FinalEDDRobot.autophase);
             isDataStored = true;
         } catch (IOException ex) {
             Logger.getLogger(Phase4.class.getName()).log(Level.SEVERE, null, ex);

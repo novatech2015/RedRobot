@@ -54,6 +54,7 @@ public class FinalEDDRobot{
                 Phase4.update();
                 if(Phase4.hitFlag()){
                     autophase++;
+                    syncState(autophase);
                 }
             //Emergency Shutdown Phase
             }else if(autophase == 5){
