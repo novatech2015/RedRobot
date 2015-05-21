@@ -6,6 +6,7 @@
 package finaleddrobot.resources;
 
 import finaleddrobot.packages.Drill;
+import finaleddrobot.packages.Hatch;
 import finaleddrobot.sensors.Arduino;
 import finaleddrobot.sensors.BMP180;
 import finaleddrobot.sensors.HIH6130;
@@ -27,6 +28,7 @@ public class Resources {
     public static HIH6130 m_hih6130;
     public static BMP180 m_bmp180;
     public static Drill m_drill;
+    public static Hatch m_hatch;
     public static LiveFeed m_liveFeed;
     public static Arduino m_arduino;
     public static PN532 m_pn532;
@@ -37,7 +39,8 @@ public class Resources {
         m_tmp102 = new TMP102();
         m_hih6130 = new HIH6130();
         m_bmp180 = new BMP180();
-        m_drill = new Drill(9001, 9001, 9001, 9001, 9001, 9001);
+        m_drill = new Drill(-9001, -9001, -9001, -9001, -9001, -9001);
+        m_hatch = new Hatch(-9001, -9001, -9001, -9001);
         m_liveFeed = new LiveFeed();
         m_liveFeed.start();
         m_arduino = new Arduino("/dev/ttyUSB0");

@@ -45,7 +45,20 @@ public class StepperMotor {
         exec.executeCommand("gpio mode " + this.pwmA + "pwm");
         exec.executeCommand("gpio mode " + this.pwmB + "pwm");
         
+    }
+    
+    public StepperMotor(int AIN2, int AIN1, int BIN2, int BIN1){
+        this.pwmA = -9001;
+        this.aIn2 = AIN2;
+        this.aIn1 = AIN1;
+        this.pwmB = -9001;
+        this.bIn2 = BIN2;
+        this.bIn1 = BIN1;
         
+        exec.executeCommand("gpio mode " + this.aIn1 + "out");
+        exec.executeCommand("gpio mode " + this.aIn2 + "out");
+        exec.executeCommand("gpio mode " + this.bIn1 + "out");
+        exec.executeCommand("gpio mode " + this.bIn2 + "out");
         
     }
     
@@ -85,8 +98,11 @@ public class StepperMotor {
         this.currentStep += this.microsteps * 4;
         this.currentStep %= this.microsteps * 4;
         
-        exec.executeCommand("gpio pwm " + this.pwmA + " " + this.pwm_a*4);
-        exec.executeCommand("gpio pwm " + this.pwmB + " " + this.pwm_b*4);
+        if(this.pwmA > 0 && this.pwmB > 0){
+            exec.executeCommand("gpio pwm " + this.pwmA + " " + this.pwm_a*4);
+            exec.executeCommand("gpio pwm " + this.pwmB + " " + this.pwm_b*4);
+        }
+        
         
         byte[] coils;
         coils = new byte[] {0,0,0,0};

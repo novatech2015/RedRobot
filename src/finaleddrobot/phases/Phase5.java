@@ -6,6 +6,8 @@
 package finaleddrobot.phases;
 
 import finaleddrobot.FinalEDDRobot;
+import finaleddrobot.actuators.StepperMotor;
+import finaleddrobot.resources.Resources;
 
 /**
  * Emergency Shutdown Phase
@@ -21,9 +23,12 @@ public class Phase5 {
     }
     
     private static void loop(){
-        System.exit(0);
-        FinalEDDRobot.autophase++;
-        hasRun = true;
+        System.out.println("In Phase 5");
+        if(!Resources.m_hatch.isHatchOpen()){
+            Resources.m_hatch.oneStep(StepperMotor.Direction.Forward);
+        }else{
+            System.exit(0);
+        }
     }
 
     public static void update() {

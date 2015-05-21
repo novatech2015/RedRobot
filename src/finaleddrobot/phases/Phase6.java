@@ -19,6 +19,7 @@ public class Phase6 {
     }
     
     private static void loop(){
+        System.out.println("In Phase 6");
         System.exit(0);
         hasRun = true;
     }

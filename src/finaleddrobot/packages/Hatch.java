@@ -7,17 +7,20 @@ package finaleddrobot.packages;
 
 import finaleddrobot.actuators.StepperMotor;
 import finaleddrobot.actuators.StepperMotor.Direction;
+import finaleddrobot.resources.RobotConstants;
+import java.util.Timer;
 
 /**
  *
  * @author mallory
  */
-public class Drill {
+public class Hatch {
     
     private StepperMotor stepper;
+    private long startTime = 0;   
     
-    public Drill(int PWMA, int AIN2, int AIN1, int PWMB, int BIN2, int BIN1){
-        stepper = new StepperMotor(PWMA, AIN2, AIN1, PWMB, BIN2, BIN1);
+    public Hatch(int AIN2, int AIN1, int BIN2, int BIN1){
+        stepper = new StepperMotor(AIN2, AIN1, BIN2, BIN1);
     }
     
     public void cycleRight(double degrees){
@@ -32,5 +35,12 @@ public class Drill {
     
     public void oneStep(Direction direction){
         stepper.oneStep(direction, StepperMotor.Style.Double);
+    }
+    
+    public boolean isHatchOpen(){
+        if(this.startTime == 0){
+            startTime = System.currentTimeMillis();
+        }
+        return (System.currentTimeMillis() - startTime > RobotConstants.hatchOpenTime);
     }
 }
