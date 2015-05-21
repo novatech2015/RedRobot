@@ -62,6 +62,7 @@ public class FinalEDDRobot{
                 Phase5.update();
                 if(Phase5.hitFlag()){
                     autophase++;
+                    syncState(autophase);
                 }
             //Termination Phase
             }else if(autophase == 6){
@@ -69,6 +70,7 @@ public class FinalEDDRobot{
                 Phase6.update();
                 if(Phase6.hitFlag()){
                     autophase++;
+                    syncState(autophase);
                 }
             }
         }
