@@ -38,12 +38,12 @@ public class StepperMotor {
         this.bIn2 = BIN2;
         this.bIn1 = BIN1;
         
-        exec.executeCommand("gpio mode " + this.aIn1 + "out");
-        exec.executeCommand("gpio mode " + this.aIn2 + "out");
-        exec.executeCommand("gpio mode " + this.bIn1 + "out");
-        exec.executeCommand("gpio mode " + this.bIn2 + "out");
-        exec.executeCommand("gpio mode " + this.pwmA + "pwm");
-        exec.executeCommand("gpio mode " + this.pwmB + "pwm");
+        exec.executeCommand("gpio mode " + this.aIn1 + " out");
+        exec.executeCommand("gpio mode " + this.aIn2 + " out");
+        exec.executeCommand("gpio mode " + this.bIn1 + " out");
+        exec.executeCommand("gpio mode " + this.bIn2 + " out");
+        exec.executeCommand("gpio mode " + this.pwmA + " pwm");
+        exec.executeCommand("gpio mode " + this.pwmB + " pwm");
         
     }
     
@@ -55,10 +55,10 @@ public class StepperMotor {
         this.bIn2 = BIN2;
         this.bIn1 = BIN1;
         
-        exec.executeCommand("gpio mode " + this.aIn1 + "out");
-        exec.executeCommand("gpio mode " + this.aIn2 + "out");
-        exec.executeCommand("gpio mode " + this.bIn1 + "out");
-        exec.executeCommand("gpio mode " + this.bIn2 + "out");
+        exec.executeCommand("gpio mode " + this.aIn1 + " out");
+        exec.executeCommand("gpio mode " + this.aIn2 + " out");
+        exec.executeCommand("gpio mode " + this.bIn1 + " out");
+        exec.executeCommand("gpio mode " + this.bIn2 + " out");
         
     }
     
